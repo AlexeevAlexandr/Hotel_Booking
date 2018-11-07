@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Get Total Cost</title>
 </head>
 <body>
-
+<table border="1" style="font-size:150%">
+    <tr>
+        <th>Number</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each ="room : ${rooms}">
+        <td th:utext="${room.number}">...</td>
+        <td th:utext="${room.category}">...</td>
+        <td th:utext="${room.price}">...</td>
+    </tr>
+</table>
 </body>
 </html>

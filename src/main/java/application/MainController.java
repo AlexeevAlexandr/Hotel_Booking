@@ -17,7 +17,25 @@ public class MainController {
 
     @RequestMapping(value = {"listRooms"}, method = RequestMethod.GET)
     public String listRooms(Model model){
-        model.addAttribute("rooms",commands.select());
+        model.addAttribute("rooms",commands.selectAllCategory());
+        return "listRooms";
+    }
+
+    @RequestMapping(value = {"premiumCategory"}, method = RequestMethod.GET)
+    public String premiumCategory(Model model){
+        model.addAttribute("rooms",commands.selectPremiumCategory());
+        return "listRooms";
+    }
+
+    @RequestMapping(value = {"averageCategory"}, method = RequestMethod.GET)
+    public String averageCategory(Model model){
+        model.addAttribute("rooms",commands.selectAverageCategory());
+        return "listRooms";
+    }
+
+    @RequestMapping(value = {"budgetCategory"}, method = RequestMethod.GET)
+    public String budgetCategory(Model model){
+        model.addAttribute("rooms",commands.selectBudgetCategory());
         return "listRooms";
     }
 }

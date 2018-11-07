@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Start Page</title>
+    <style>
+        #b{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("room.jpg");
+        }
+    </style>
 </head>
-<body>
+<body id="b">
 <a th:href="@{/listRooms}">List Rooms</a>
 <hr>
+<div style="position: relative; text-align: center">
+<p style="position: fixed; bottom: 5px; width: 100%;">
+    <i>Made by Java, Spring Boot, Thymeleaf, HTML</i>
+</p>
+</div>
 </body>
 </html>

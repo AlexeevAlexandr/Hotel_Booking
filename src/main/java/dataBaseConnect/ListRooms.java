@@ -5,24 +5,24 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "list_rooms")
-public class DataBaseConnect {
+public class ListRooms {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "number")
-    public int number;
+    private int number;
 
     @Column(name = "category")
     @Size(max = 50)
-    public String category;
+    private String category;
 
     @Column(name = "price")
     @Size(max = 50)
-    public String price;
+    private String price;
 
-    public DataBaseConnect() {
+    public ListRooms() {
     }
 
-    public DataBaseConnect(String category, String price) {
+    public ListRooms(String category, String price) {
         this.category = category;
         this.price = price;
     }

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Hotel_Booking:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hotel_Booking_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Hotel_Booking/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Hotel_Booking" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

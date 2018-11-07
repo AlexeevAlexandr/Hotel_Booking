@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms List</title>
+    <style>
+        #b{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("code.jpg");
+        }
+    </style>
+</head>
+<body id="b">
+<a th:href="@{/startPage}" title="Return to the start page">Start Page</a>&nbsp&nbsp
+<hr>
+<div>
+    <strong>
+        <a th:href="@{/listRooms}" title="Select all category">All category</a><br>
+        <a th:href="@{/premiumCategory}" title="Select premium category">Premium category</a><br>
+        <a th:href="@{/averageCategory}" title="Select average category">Average category</a><br>
+        <a th:href="@{/budgetCategory}" title="Select budget category">Budget category</a>
+    </strong>
+    <br>
+    <h1>Rooms list:</h1>
+    <table border="1" style="font-size:150%">
+        <tr>
+            <th>Number</th>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each ="room : ${rooms}">
+            <td th:utext="${room.number}">...</td>
+            <td th:utext="${room.category}">...</td>
+            <td th:utext="${room.price}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

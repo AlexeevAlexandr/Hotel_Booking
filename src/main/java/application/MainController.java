@@ -3,6 +3,7 @@ package application;
 import commands.Commands;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,6 +20,13 @@ public class MainController {
     public String listRooms(Model model){
         model.addAttribute("rooms",commands.selectAllCategory());
         return "listRooms";
+    }
+
+    @RequestMapping(value = {"listRooms"}, method = RequestMethod.GET)
+    public String getTotalCost(Model model, @ModelAttribute("number") ){
+
+        model.addAttribute("number",commands.selectAllCategory());
+        return "getTotalCost";
     }
 
     @RequestMapping(value = {"premiumCategory"}, method = RequestMethod.GET)

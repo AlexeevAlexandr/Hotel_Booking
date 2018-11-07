@@ -38,11 +38,11 @@
     </table>
 </div>
 <br>
-<label th:action="">
+<form th:action="@{/listRooms}" th:object="${number}" th:method="POST" >
     <input type="number" name="number" placeholder="enter rum number">Number of days<br>
     <input type="radio" name="breakfast" title="mark this tag if you want include breakfast">Breakfast<br>
     <input type="radio" name="cleaning" title="mark this tag if you want include cleaning">cleaning<br>
     <button type="submit" name="submit">Order</button>
-</label>
+</form>
 </body>
 </html>

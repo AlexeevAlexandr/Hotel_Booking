@@ -2,7 +2,6 @@ package application;
 
 import commands.Commands;
 import dataBaseConnect.Order;
-import dataBaseConnect.Orders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,14 +20,18 @@ public class MainController {
     @RequestMapping(value = {"listRooms"}, method = RequestMethod.GET)
     public String listRooms(Model model){
         model.addAttribute("rooms",commands.selectAllCategory());
-        Order order = new Order();
-        model.addAttribute("order", order);
         return "listRooms";
     }
 
-    @RequestMapping(value = {"/getTotalCost"}, method = RequestMethod.POST)
-    public String createOrder(Model model, @ModelAttribute("order") Order order){
+    @RequestMapping(value = {"listRooms"}, method = RequestMethod.POST)
+    public String getTotalCost(Model model, @ModelAttribute("rooms") Order order){
+        model.addAttribute("rooms",commands.selectAllCategory());
+        return "listRooms";
+    }
 
+    @RequestMapping(value = {"/getTotalCost"}, method = RequestMethod.GET)
+    public String createOrder(Model model){
+        model.addAttribute("rooms", commands.selectOrder(2));
         return "getTotalCost";
     }
 

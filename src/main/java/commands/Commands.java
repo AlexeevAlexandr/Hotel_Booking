@@ -46,4 +46,14 @@ public class Commands {
         }
         return null;
     }
+
+    public List selectOrder(int number) {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Orders WHERE number = " + number).list();
+        } catch (HibernateException e) {
+            e.getMessage();
+        }
+        return null;
+    }
 }

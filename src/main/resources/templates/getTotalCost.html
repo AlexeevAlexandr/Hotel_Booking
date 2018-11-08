@@ -5,16 +5,24 @@
     <title>Get Total Cost</title>
 </head>
 <body>
+<a href="listRooms" title="Return to list rooms">List rooms</a>
+<hr>
 <table border="1" style="font-size:150%">
     <tr>
+        <th>Name</th>
         <th>Number</th>
-        <th>Category</th>
-        <th>Price</th>
+        <th>Date From</th>
+        <th>Date Till</th>
+        <th>Total</th>
+        <th>Date registration</th>
     </tr>
     <tr th:each ="room : ${rooms}">
+        <td th:utext="${room.name}">...</td>
         <td th:utext="${room.number}">...</td>
-        <td th:utext="${room.category}">...</td>
-        <td th:utext="${room.price}">...</td>
+        <td th:utext="${room.dateFrom}">...</td>
+        <td th:utext="${room.dateTill}">...</td>
+        <td th:utext="${room.cost}">...</td>
+        <td th:utext="${room.dateRegistration}">...</td>
     </tr>
 </table>
 </body>

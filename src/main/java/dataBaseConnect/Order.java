@@ -5,6 +5,11 @@ import java.util.Date;
 public class Order {
     private int number;
     private Date dateFrom;
+    private Date dateTill;
+    private String name;
+    private int cost;
+    private boolean cleaning;
+    private boolean breakfast;
 
     public boolean isCleaning() {
         return cleaning;
@@ -21,12 +26,6 @@ public class Order {
     public void setBreakfast(boolean breakfast) {
         this.breakfast = breakfast;
     }
-
-    private Date dateTill;
-    private String name;
-    private int cost;
-    private boolean cleaning;
-    private boolean breakfast;
 
     public int getNumber() {
         return number;

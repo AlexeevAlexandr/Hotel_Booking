@@ -38,14 +38,17 @@
     </table>
 </div>
 <br>
-<form th:action="@{/listRooms}" th:object="${order}" method="POST" >
-    <input type="text" th:field="*{name}" placeholder="enter your name">Name<br>
-    <input type="number" th:field="*{number}" placeholder="enter rum number">Number of days<br>
-    <input type="date" th:field="*{dateFrom}" placeholder="enter date from">< >
-    <input type="date" th:field="*{dateTill}" placeholder="enter date till"><br>
-    <input type="radio" th:name="*{breakfast}" title="mark this tag if you want include breakfast">Breakfast<br>
-    <input type="radio" th:name="*{cleaning}" title="mark this tag if you want include cleaning">cleaning<br>
-    <button type="submit" name="submit">Order</button>
+<form th:action="@{/listRooms}" th:object="${order}">
+    <input type="text" name="name" placeholder="Enter your name" title="Enter yor name">Name<br>
+    <label>
+        <input type="number" name="room" placeholder="Enter The room number" title="Enter The room number">
+    </label>The room number<br>
+    <input type="date" name="dateFrom" title="Enter date from">< >
+    <input type="date" name="dateTill" title="Enter date till"><br>
+    <input type="radio" name="breakfast" title="Mark this tag if you want include breakfast">Breakfast<br>
+    <input type="radio" name="cleaning" title="Mark this tag if you want include cleaning">cleaning<br>
+    <button type="submit">Order</button>
+    <button type="reset">Clear</button>
 </form>
 </body>
 </html>

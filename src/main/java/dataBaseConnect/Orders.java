@@ -6,6 +6,11 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "orders")
 public class Orders {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "number")
     private int number;
 
@@ -23,15 +28,25 @@ public class Orders {
     private int cost;
 
     @Column(name = "clean")
+    @Size(max = 5)
     private String clean;
 
     @Column(name = "breakfast")
+    @Size(max = 5)
     private String breakfast;
 
     @Column(name = "dateregistration")
     private String dateRegistration;
 
     public Orders(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getClean() {
         return clean;

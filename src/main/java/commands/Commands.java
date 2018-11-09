@@ -1,13 +1,14 @@
 package commands;
 
 import dataBaseConnect.Order;
-import dataBaseConnect.Orders;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Commands {
@@ -66,8 +67,8 @@ public class Commands {
 
     public void add() {
         int number = 1;
-        String dateFrom = "25-15-2015";
-        String dateTill = "25-15-2016";
+        String dateFrom = getDateTime();
+        String dateTill = getDateTime();
         String name = "nameeeee";
         int cost = 10101;
         String clean = "yes";
@@ -76,7 +77,7 @@ public class Commands {
              Session session = sessionFactory.openSession())
         {
             transaction = session.beginTransaction();
-            Orders orders = new Orders(number, dateFrom, dateTill, name, cost, clean, breakfast,"20-12-2018");
+            dataBaseConnect.Orders orders = new dataBaseConnect.Orders(number, dateFrom, dateTill, name, cost, clean, breakfast,getDateTime());
             session.save(orders);
             transaction.commit();
         } catch (Exception e) {
@@ -87,8 +88,7 @@ public class Commands {
         }
     }
 
-    public static void main(String[] args) {
-        Commands commands = new Commands();
-        commands.add();
+    private String getDateTime() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 }

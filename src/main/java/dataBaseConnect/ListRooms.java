@@ -16,13 +16,12 @@ public class ListRooms {
     private String category;
 
     @Column(name = "price")
-    @Size(max = 50)
-    private String price;
+    private int price;
 
     public ListRooms() {
     }
 
-    public ListRooms(String category, String price) {
+    public ListRooms(String category, int price) {
         this.category = category;
         this.price = price;
     }
@@ -43,11 +42,11 @@ public class ListRooms {
         this.category = category;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

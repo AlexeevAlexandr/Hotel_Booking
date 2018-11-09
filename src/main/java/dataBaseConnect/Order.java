@@ -4,26 +4,26 @@ import java.util.Date;
 
 public class Order {
     private int number;
-    private Date dateFrom;
-    private Date dateTill;
+    private String dateFrom;
+    private String dateTill;
     private String name;
     private int cost;
-    private boolean cleaning;
-    private boolean breakfast;
+    private String cleaning;
+    private String breakfast;
 
-    public boolean isCleaning() {
+    public String getCleaning() {
         return cleaning;
     }
 
-    public void setCleaning(boolean cleaning) {
+    public void setCleaning(String cleaning) {
         this.cleaning = cleaning;
     }
 
-    public boolean isBreakfast() {
+    public String getBreakfast() {
         return breakfast;
     }
 
-    public void setBreakfast(boolean breakfast) {
+    public void setBreakfast(String breakfast) {
         this.breakfast = breakfast;
     }
 
@@ -35,19 +35,19 @@ public class Order {
         this.number = number;
     }
 
-    public Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTill() {
+    public String getDateTill() {
         return dateTill;
     }
 
-    public void setDateTill(Date dateTill) {
+    public void setDateTill(String dateTill) {
         this.dateTill = dateTill;
     }
 

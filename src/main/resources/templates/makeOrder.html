@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Make order</title>
+</head>
+<body>
+<a th:href="@{/listRooms}">Rooms List</a>
+<hr>
+<form th:action="@{/order}" th:object="${order}" method="POST">
+    <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter yor name">Name<br>
+    <input type="number" th:field="*{number}" placeholder="Enter The room number" title="Enter The room number">The room number<br>
+    <input type="date" th:field="*{dateFrom}" title="Enter date from">< >
+    <input type="date" th:field="*{dateTill}" title="Enter date till"><br>
+    <input type="text" th:field="*{breakfast}" placeholder="yes/no" title="Type 'yes' if you want include breakfast">Breakfast<br>
+    <input type="text" th:field="*{cleaning}" placeholder="yes/no" title="Type 'yes' if you want include cleaning">cleaning<br>
+    <button type="submit">Order</button>
+    <button type="reset">Clear</button>
+</form>
+</body>
+</html>

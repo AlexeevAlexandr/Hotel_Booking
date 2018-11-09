@@ -4,7 +4,6 @@ import commands.Commands;
 import dataBaseConnect.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,18 +22,6 @@ public class MainController {
         return "listRooms";
     }
 
-    @RequestMapping(value = {"listRooms"}, method = RequestMethod.POST)
-    public String getTotalCost(Model model, @ModelAttribute("rooms") Order order){
-        model.addAttribute("rooms",commands.selectAllCategory());
-        return "listRooms";
-    }
-
-    @RequestMapping(value = {"/getTotalCost"}, method = RequestMethod.GET)
-    public String createOrder(Model model){
-        model.addAttribute("rooms", commands.selectOrder(2));
-        return "getTotalCost";
-    }
-
     @RequestMapping(value = {"premiumCategory"}, method = RequestMethod.GET)
     public String premiumCategory(Model model){
         model.addAttribute("rooms",commands.selectPremiumCategory());
@@ -51,5 +38,29 @@ public class MainController {
     public String budgetCategory(Model model){
         model.addAttribute("rooms",commands.selectBudgetCategory());
         return "listRooms";
+    }
+
+    @RequestMapping(value = {"makeOrder"}, method = RequestMethod.GET)
+    public String showCreatedOrder(Model model){
+        Order order = new Order();
+        model.addAttribute("order", order);
+        return "makeOrder";
+    }
+
+    @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.POST)
+    public String createOrder(Model model){
+        try {
+            commands.add();
+            return "redirect:/order";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "makeOrder";
+    }
+
+    @RequestMapping(value = {"/order"})
+    public String order(Model model){
+        model.addAttribute("order", commands.selectOrder());
+        return "order";
     }
 }

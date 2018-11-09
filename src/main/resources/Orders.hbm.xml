@@ -5,13 +5,13 @@
 
 <hibernate-mapping>
     <class name="dataBaseConnect.Orders" table="orders">
-        <id name="dateRegistration" column="dateregistration" type="date">
-            <generator class="native"/>
-        </id>
+        <id name="dateRegistration" column="dateregistration" type="date"/>
         <property name="number" type="int" column="number"/>
-        <property name="dateFrom" column="datefrom" type="date"/>
-        <property name="dateTill" column="datetill" type="date"/>
+        <property name="dateFrom" column="datefrom" type="string"/>
+        <property name="dateTill" column="datetill" type="string"/>
         <property name="name" column="name" type="string"/>
         <property name="cost" column="cost" type="int"/>
+        <property name="clean" column="clean" type="string"/>
+        <property name="breakfast" column="breakfast" type="string"/>
     </class>
 </hibernate-mapping>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<div>
+    <strong>
+        <a href="/listRooms" title="Return to the rooms list page">Rooms list</a>
+    </strong>
+    <br>
+    <h1>Order</h1>
+    <table border="1" style="font-size:150%">
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Date from</th>
+            <th>Date till</th>
+            <th>Cleaning</th>
+            <th>Breakfast</th>
+            <th>Registration</th>
+        </tr>
+        <tr th:each ="person : ${order}">
+            <td th:utext="${person.name}">...</td>
+            <td th:utext="${person.number}">...</td>
+            <td th:utext="${person.dateFrom}">...</td>
+            <td th:utext="${person.dateTill}">...</td>
+            <td th:utext="${person.clean}">...</td>
+            <td th:utext="${person.breakfast}">...</td>
+            <td th:utext="${person.dateregistration}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

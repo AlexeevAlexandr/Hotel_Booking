@@ -8,7 +8,6 @@
         <id name="id" column="id" type="int">
             <generator class="native"/>
         </id>
-        <property name="dateRegistration" column="dateregistration" type="string"/>
         <property name="number" type="int" column="number"/>
         <property name="dateFrom" column="datefrom" type="string"/>
         <property name="dateTill" column="datetill" type="string"/>
@@ -16,5 +15,7 @@
         <property name="cost" column="cost" type="int"/>
         <property name="clean" column="clean" type="string"/>
         <property name="breakfast" column="breakfast" type="string"/>
+        <property name="dateRegistration" column="dateregistration" type="string"/>
+
     </class>
 </hibernate-mapping>

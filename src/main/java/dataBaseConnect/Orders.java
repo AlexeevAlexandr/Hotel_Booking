@@ -38,7 +38,19 @@ public class Orders {
     @Column(name = "dateregistration")
     private String dateRegistration;
 
-    public Orders(){}
+    public Orders() {
+    }
+
+    public Orders(int number, String dateFrom, String dateTill, @Size(max = 50) String name, int cost, @Size(max = 5) String clean, @Size(max = 5) String breakfast, String dateRegistration) {
+        this.number = number;
+        this.dateFrom = dateFrom;
+        this.dateTill = dateTill;
+        this.name = name;
+        this.cost = cost;
+        this.clean = clean;
+        this.breakfast = breakfast;
+        this.dateRegistration = dateRegistration;
+    }
 
     public int getId() {
         return id;
@@ -112,7 +124,7 @@ public class Orders {
         this.cost = cost;
     }
 
-    public Orders(int number, String dateFrom, String dateTill, String name, int cost, String clean, String breakfast, String dateRegistration) {
+    public Orders(int number, String dateFrom, String dateTill, String name, int cost, String clean, String breakfast) {
         this.number = number;
         this.dateFrom = dateFrom;
         this.dateTill = dateTill;
@@ -120,6 +132,5 @@ public class Orders {
         this.cost = cost;
         this.clean = clean;
         this.breakfast = breakfast;
-        this.dateRegistration = dateRegistration;
     }
 }

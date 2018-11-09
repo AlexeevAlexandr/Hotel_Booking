@@ -9,6 +9,6 @@
             <generator class="native"/>
         </id>
         <property name="category" column="category" type="string"/>
-        <property name="price" column="price" type="string"/>
+        <property name="price" column="price" type="int"/>
     </class>
 </hibernate-mapping>

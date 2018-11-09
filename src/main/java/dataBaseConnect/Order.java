@@ -1,7 +1,5 @@
 package dataBaseConnect;
 
-import java.util.Date;
-
 public class Order {
     private int number;
     private String dateFrom;

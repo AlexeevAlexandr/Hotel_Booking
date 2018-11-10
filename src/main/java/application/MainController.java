@@ -1,6 +1,7 @@
 package application;
 
 import commands.Commands;
+import commands.CountTotalCost;
 import dataBaseConnect.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +20,10 @@ public class MainController {
     private String name;
 
     @Value("Incorrect date format, example 2018-11-25")
-    private String errorMessage;
+    private String errorMessageIncorrectDateFormat;
+
+    @Value("Incorrect date insertion, the number of days can not be negative")
+    private String errorMessageNegativeDate;
 
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
@@ -49,6 +54,12 @@ public class MainController {
         return "listRooms";
     }
 
+    @RequestMapping(value = {"/allOrders"}, method = RequestMethod.GET)
+    public String allOrders(Model model){
+        model.addAttribute("orders",commands.selectAllOrders());
+        return "allOrders";
+    }
+
     @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.GET)
     public String showCreatedOrder(Model model){
         Order order = new Order();
@@ -57,19 +68,31 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.POST)
-    public String createOrder(Model model, @ModelAttribute("order") Order order){
-            int number = order.getNumber();
-            String dateFrom = order.getDateFrom();
-            String dateTill = order.getDateTill();
-            name = order.getName();
-            int cost = order.getCost();
-            String clean = order.getCleaning();
-            String breakfast = order.getBreakfast();
+    public String createOrder(Model model, @ModelAttribute("order") Order order) throws ParseException {
+        int number = order.getNumber();
+        String dateFrom = order.getDateFrom();
+        String dateTill = order.getDateTill();
+        name = order.getName();
+        String clean = order.getCleaning().toLowerCase();
+        String breakfast = order.getBreakfast().toLowerCase();
+
         try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = simpleDateFormat.parse(dateFrom);
+            Date date2 = simpleDateFormat.parse(dateTill);
+            int diff = Math.round(date2.getDate() - date1.getDate());
+            if (diff < 0){
+                model.addAttribute("errorMessage", errorMessageNegativeDate);
+                return "makeOrder";
+            }
+            int cost = ((new CountTotalCost().selectPrice(number)) +
+                ((clean.equalsIgnoreCase("yes") ? 1 : 0)) +
+                ((breakfast.equalsIgnoreCase("yes") ? 5 : 0))) * diff;
+
             commands.add(number, dateFrom, dateTill, name, cost, clean, breakfast, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             return "redirect:/order";
         }catch(Exception e){
-            model.addAttribute("errorMessage", errorMessage);
+            model.addAttribute("errorMessage", errorMessageIncorrectDateFormat);
             return "makeOrder";
         }
     }

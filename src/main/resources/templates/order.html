@@ -19,6 +19,7 @@
             <th>Date till</th>
             <th>Cleaning</th>
             <th>Breakfast</th>
+            <th>Total</th>
             <th>Registration</th>
         </tr>
         <tr th:each ="person : ${order}">
@@ -28,6 +29,7 @@
             <td th:utext="${person.dateTill}">...</td>
             <td th:utext="${person.clean}">...</td>
             <td th:utext="${person.breakfast}">...</td>
+            <td th:utext="${person.cost}">...</td>
             <td th:utext="${person.dateRegistration}">...</td>
         </tr>
     </table>

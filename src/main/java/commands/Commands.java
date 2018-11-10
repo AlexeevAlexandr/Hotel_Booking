@@ -78,4 +78,14 @@ public class Commands {
             e.getMessage();
         }
     }
+
+    public List selectAllOrders() {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Orders").list();
+        } catch (HibernateException e) {
+            e.getMessage();
+        }
+        return null;
+    }
 }

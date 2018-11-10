@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders</title>
+</head>
+<body>
+<a href="/startPage" title="Return to the start page">Start page</a>
+<hr>
+<table border="1" style="font-size:150%">
+    <tr>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Date From</th>
+        <th>Date Till</th>
+        <th>Clean</th>
+        <th>Breakfast</th>
+        <th>Total</th>
+        <th>Date registration</th>
+    </tr>
+    <tr th:each ="order : ${orders}">
+        <td th:utext="${order.name}">...</td>
+        <td th:utext="${order.number}">...</td>
+        <td th:utext="${order.dateFrom}">...</td>
+        <td th:utext="${order.dateTill}">...</td>
+        <td th:utext="${order.clean}">...</td>
+        <td th:utext="${order.breakfast}">...</td>
+        <td th:utext="${order.cost}">...</td>
+        <td th:utext="${order.dateRegistration}">...</td>
+    </tr>
+</table>
+</body>
+</html>

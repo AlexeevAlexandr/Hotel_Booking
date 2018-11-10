@@ -17,5 +17,10 @@
     <button type="submit">Order</button>
     <button type="reset">Clear</button>
 </form>
+<br>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
 </body>
 </html>

@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class Commands {
@@ -79,9 +77,5 @@ public class Commands {
             }
             e.getMessage();
         }
-    }
-
-    public static void main(String[] args) {
-        new Commands().add(4,"2015-12-23","2015-12-25","fart",120,"yes", "no",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 }

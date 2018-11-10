@@ -2,6 +2,7 @@ package application;
 
 import commands.Commands;
 import dataBaseConnect.Order;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +15,10 @@ import java.util.Date;
 @Controller
 public class MainController {
     private Commands commands = new Commands();
-    String name;
+    private String name;
+
+    @Value("Incorrect date format, example 2018-11-25")
+    private String errorMessage;
 
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
@@ -65,13 +69,13 @@ public class MainController {
             commands.add(number, dateFrom, dateTill, name, cost, clean, breakfast, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             return "redirect:/order";
         }catch(Exception e){
-            e.printStackTrace();
+            model.addAttribute("errorMessage", errorMessage);
+            return "makeOrder";
         }
-        return "makeOrder";
     }
 
     @RequestMapping(value = {"/order"})
-    public String order(Model model, Order order){
+    public String order(Model model){
         model.addAttribute("order", commands.selectOrder(name));
         return "order";
     }

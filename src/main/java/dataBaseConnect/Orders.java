@@ -28,11 +28,9 @@ public class Orders {
     private int cost;
 
     @Column(name = "clean")
-    @Size(max = 5)
     private String clean;
 
     @Column(name = "breakfast")
-    @Size(max = 5)
     private String breakfast;
 
     @Column(name = "dateregistration")
@@ -41,7 +39,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(int number, String dateFrom, String dateTill, @Size(max = 50) String name, int cost, @Size(max = 5) String clean, @Size(max = 5) String breakfast, String dateRegistration) {
+    public Orders(int number, String dateFrom, String dateTill, @Size(max = 50) String name, int cost, String clean, String breakfast, String dateRegistration) {
         this.number = number;
         this.dateFrom = dateFrom;
         this.dateTill = dateTill;

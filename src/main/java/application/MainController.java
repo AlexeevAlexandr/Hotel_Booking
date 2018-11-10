@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.text.ParseException;
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,6 +24,9 @@ public class MainController {
 
     @Value("Incorrect date insertion, the number of days can not be negative")
     private String errorMessageNegativeDate;
+
+    @Value("The name is to long, must be no more than 50 characters")
+    private String errorMessageNameToLong;
 
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
@@ -68,14 +71,18 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.POST)
-    public String createOrder(Model model, @ModelAttribute("order") Order order) throws ParseException {
+    public String createOrder(Model model, @ModelAttribute("order") Order order, HttpServletRequest request) {
         int number = order.getNumber();
         String dateFrom = order.getDateFrom();
         String dateTill = order.getDateTill();
         name = order.getName();
-        String clean = order.getCleaning().toLowerCase();
-        String breakfast = order.getBreakfast().toLowerCase();
+        String clean = (request.getParameter("cleaning") == null) ? "no" : "yes";
+        String breakfast = (request.getParameter("breakfast") == null) ? "no" : "yes";
 
+        if (name.length()>50){
+            model.addAttribute("errorMessage", errorMessageNameToLong);
+            return "makeOrder";
+        }
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = simpleDateFormat.parse(dateFrom);
@@ -93,6 +100,7 @@ public class MainController {
             return "redirect:/order";
         }catch(Exception e){
             model.addAttribute("errorMessage", errorMessageIncorrectDateFormat);
+            e.printStackTrace();
             return "makeOrder";
         }
     }

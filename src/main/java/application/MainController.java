@@ -28,6 +28,9 @@ public class MainController {
     @Value("The name is to long, must be no more than 50 characters")
     private String errorMessageNameToLong;
 
+    @Value("Name not found")
+    private String nameNotFound;
+
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
         return "startPage";
@@ -110,4 +113,20 @@ public class MainController {
         model.addAttribute("order", commands.selectOrder(name));
         return "order";
     }
+
+    @RequestMapping(value = {"/listOrdersByName"}, method = RequestMethod.GET)
+    public String listOrdersByName(Model model, HttpServletRequest request){
+        try {
+            String name = request.getParameter("name");
+            Model a = model.addAttribute("orders",commands.selecByName(name));
+            if (a.toString().equals("{orders=[]}")){
+                model.addAttribute("errorMessage", nameNotFound);
+            }
+        }catch (Exception e){
+            e.getMessage();
+            return "listOrdersByName";
+        }
+        return "listOrdersByName";
+    }
+
 }

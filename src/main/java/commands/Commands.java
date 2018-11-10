@@ -88,4 +88,14 @@ public class Commands {
         }
         return null;
     }
+
+    public List selecByName(String name) {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Orders WHERE name = '" + name + "'").list();
+        } catch (HibernateException e) {
+            e.getMessage();
+        }
+        return null;
+    }
 }

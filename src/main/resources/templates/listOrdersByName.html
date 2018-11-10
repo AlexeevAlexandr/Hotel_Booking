@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders by name</title>
+</head>
+<body>
+<a th:href="@{/startPage}" title="Return to the start page">Start Page</a>
+<hr>
+<form th:action="@{/listOrdersByName}" method="GET">
+    <label>
+        <input type="text" name="name">
+    </label>Enter name<br>
+    <button type="submit">Order</button>
+    <button type="reset">Clear</button>
+</form>
+<br>
+<table border="1" style="font-size:150%">
+    <tr>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Date From</th>
+        <th>Date till</th>
+        <th>Clean</th>
+        <th>Breakfast</th>
+        <th>Total</th>
+        <th>Registration date</th>
+    </tr>
+    <tr th:each ="order : ${orders}">
+        <td th:utext="${order.name}">...</td>
+        <td th:utext="${order.number}">...</td>
+        <td th:utext="${order.dateFrom}">...</td>
+        <td th:utext="${order.dateTill}">...</td>
+        <td th:utext="${order.clean}">...</td>
+        <td th:utext="${order.breakfast}">...</td>
+        <td th:utext="${order.cost}">...</td>
+        <td th:utext="${order.dateRegistration}">...</td>
+    </tr>
+</table>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+</body>
+</html>

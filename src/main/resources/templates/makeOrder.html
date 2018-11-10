@@ -5,7 +5,8 @@
     <title>Make order</title>
 </head>
 <body>
-<a th:href="@{/listRooms}">Rooms List</a>
+<a th:href="@{/listRooms}" title="Return to the rooms list page">Rooms List</a>&nbsp&nbsp
+<a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
 <hr>
 <form th:action="@{/makeOrder}" th:object="${order}" method="POST">
     <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter yor name">Name<br>

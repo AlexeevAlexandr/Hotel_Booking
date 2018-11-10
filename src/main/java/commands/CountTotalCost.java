@@ -20,13 +20,4 @@ public class CountTotalCost{
         }
         return 0;
     }
-
-    public static void main(String[] args) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = simpleDateFormat.parse("2015-12-23");
-        Date date2 = simpleDateFormat.parse("2015-12-25");
-        long diff = (date2.getTime() - date1.getTime());
-        System.out.println(date1.getDate() +" "+ date2.getDate());
-        System.out.println(diff);
-    }
 }

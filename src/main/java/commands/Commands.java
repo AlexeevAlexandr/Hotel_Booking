@@ -6,6 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Commands {
@@ -51,10 +54,10 @@ public class Commands {
         return null;
     }
 
-    public List selectOrder(int number) {
+    public List selectOrder(String name) {
         try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
              Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Orders WHERE number = " + number).list();
+            return session.createQuery("FROM Orders WHERE name = '" + name + "'").list();
         } catch (HibernateException e) {
             e.getMessage();
         }
@@ -76,5 +79,9 @@ public class Commands {
             }
             e.getMessage();
         }
+    }
+
+    public static void main(String[] args) {
+        new Commands().add(4,"2015-12-23","2015-12-25","fart",120,"yes", "no",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 }

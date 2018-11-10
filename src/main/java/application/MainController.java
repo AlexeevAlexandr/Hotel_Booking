@@ -14,6 +14,7 @@ import java.util.Date;
 @Controller
 public class MainController {
     private Commands commands = new Commands();
+    String name;
 
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
@@ -56,13 +57,12 @@ public class MainController {
             int number = order.getNumber();
             String dateFrom = order.getDateFrom();
             String dateTill = order.getDateTill();
-            String name = order.getName();
+            name = order.getName();
             int cost = order.getCost();
             String clean = order.getCleaning();
             String breakfast = order.getBreakfast();
-
         try {
-            commands.add(number, dateFrom, dateTill, name, cost, clean, breakfast, getDateTime());
+            commands.add(number, dateFrom, dateTill, name, cost, clean, breakfast, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             return "redirect:/order";
         }catch(Exception e){
             e.printStackTrace();
@@ -70,14 +70,9 @@ public class MainController {
         return "makeOrder";
     }
 
-    private String getDateTime() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-    }
-
     @RequestMapping(value = {"/order"})
     public String order(Model model, Order order){
-        int number = order.getNumber();
-        model.addAttribute("order", commands.selectOrder(number));
+        model.addAttribute("order", commands.selectOrder(name));
         return "order";
     }
 }

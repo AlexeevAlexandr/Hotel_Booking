@@ -1,6 +1,7 @@
 package dataBaseConnect;
 
 public class Order {
+    private int id;
     private int number;
     private String dateFrom;
     private String dateTill;
@@ -8,6 +9,7 @@ public class Order {
     private int cost;
     private String cleaning;
     private String breakfast;
+    private String dateRegistration;
 
     public String getCleaning() {
         return cleaning;
@@ -63,5 +65,21 @@ public class Order {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDateRegistration() {
+        return dateRegistration;
+    }
+
+    public void setDateRegistration(String dateRegistration) {
+        this.dateRegistration = dateRegistration;
     }
 }

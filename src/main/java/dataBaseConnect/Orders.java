@@ -123,14 +123,4 @@ public class Orders {
     public void setCost(int cost) {
         this.cost = cost;
     }
-
-    public Orders(int number, String dateFrom, String dateTill, String name, int cost, String clean, String breakfast) {
-        this.number = number;
-        this.dateFrom = dateFrom;
-        this.dateTill = dateTill;
-        this.name = name;
-        this.cost = cost;
-        this.clean = clean;
-        this.breakfast = breakfast;
-    }
 }

@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Make order</title>
+    <style>
+        input {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <a th:href="@{/listRooms}" title="Return to the rooms list page">Rooms List</a>&nbsp&nbsp
 <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
 <hr>
 <form th:action="@{/makeOrder}" th:object="${order}" method="POST">
-    <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter yor name" maxlength="50">Name<br>
-    <input type="number" th:field="*{number}" placeholder="Enter The room number" title="Enter The room number">The room number<br>
-    <input type="date" th:field="*{dateFrom}" placeholder="Enter date from" title="Enter date from">< >
-    <input type="date" th:field="*{dateTill}" placeholder="Enter date till" title="Enter date till"><br>
+<fieldset>
+    <legend><h1>Order</h1></legend>
+    <label>Name
+        <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter yor name" maxlength="50"><br>
+    </label>
+    <label>The room number
+        <input type="number" th:field="*{number}" placeholder="Enter The room number" title="Enter The room number"><br>
+    </label>
+    <label>Date
+        <input type="date" th:field="*{dateFrom}" placeholder="Enter date from" title="Enter date from">< >
+        <input type="date" th:field="*{dateTill}" placeholder="Enter date till" title="Enter date till"><br>
+    </label>
     <label>
         <input type="checkbox" name="breakfast" value="breakfast">
     </label>Breakfast 5$<br>
@@ -21,6 +34,7 @@
     </label>cleaning 1$<br>
     <button type="submit">Order</button>
     <button type="reset">Clear</button>
+</fieldset>
 </form>
 <br>
 <div th:if="${errorMessage}" th:utext="${errorMessage}"

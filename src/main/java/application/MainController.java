@@ -77,7 +77,7 @@ public class MainController {
     public String createOrder(Model model, @ModelAttribute("order") Order order, HttpServletRequest request) {
         int number = order.getNumber();
         String dateFrom = order.getDateFrom();
-        String dateTill = order.getDateTill();
+        String dateTill =  order.getDateTill();
         name = order.getName();
         String clean = (request.getParameter("cleaning") == null) ? "no" : "yes";
         String breakfast = (request.getParameter("breakfast") == null) ? "no" : "yes";
@@ -128,5 +128,5 @@ public class MainController {
         }
         return "listOrdersByName";
     }
-
 }
+

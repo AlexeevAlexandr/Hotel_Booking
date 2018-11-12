@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Order</title>
+    <style>
+        #b{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("room.jpg");
+        }
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: powderblue;}
+        #customers tr:nth-child(odd){background-color: aquamarine;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
-<body>
+<body id="b">
 <div>
     <strong>
         <a th:href="@{/startPage}" title="Return to the start page">Start page</a>&nbsp&nbsp
@@ -12,8 +41,9 @@
         <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
     </strong>
     <hr>
-    <h1>Order</h1>
-    <table border="1" style="font-size:150%">
+    <fieldset>
+        <legend><h1>Order</h1></legend>
+    <table id="customers" border="1" style="font-size:150%; text-align: center" th:align="center">
         <tr>
             <th>Name</th>
             <th>Number</th>
@@ -35,6 +65,7 @@
             <td th:utext="${person.dateRegistration}">...</td>
         </tr>
     </table>
+    </fieldset>
 </div>
 </body>
 </html>

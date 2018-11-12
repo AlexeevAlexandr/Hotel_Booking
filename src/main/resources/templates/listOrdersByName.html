@@ -50,16 +50,16 @@
 <form th:action="@{/listOrdersByName}" method="GET" th:align="center">
     <fieldset>
         <legend>Find order by name:</legend>
-        <label>
+        <label>Enter name
             <input type="text" name="name" maxlength="50" style="text-align: center">
-        </label>Enter name<br>
+        </label><br>
         <button type="submit">Find</button>
         <button type="reset">Clear</button>
     </fieldset>
 </form>
 </div>
 <br>
-<table border="1" style="font-size:150%" align="center">
+<table border="1" style="font-size:150%; width: 90%; text-align: center" align="center">
     <tr>
         <th>Name</th>
         <th>Number</th>

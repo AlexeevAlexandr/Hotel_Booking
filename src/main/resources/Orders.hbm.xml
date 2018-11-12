@@ -9,8 +9,8 @@
             <generator class="native"/>
         </id>
         <property name="number" type="int" column="number"/>
-        <property name="dateFrom" column="datefrom" type="string"/>
-        <property name="dateTill" column="datetill" type="string"/>
+        <property name="dateFrom" column="dateFrom" type="string"/>
+        <property name="dateTill" column="dateTill" type="string"/>
         <property name="name" column="name" type="string"/>
         <property name="cost" column="cost" type="int"/>
         <property name="clean" column="clean" type="string"/>

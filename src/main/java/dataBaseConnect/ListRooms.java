@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "list_rooms")
+@Table(name = "listRooms")
 public class ListRooms {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

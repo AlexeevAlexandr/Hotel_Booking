@@ -10,6 +10,40 @@
             background-position: center;
             background-image: url("room.jpg");
         }
+        div {
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        #z{
+            border: 1px solid #ddd;
+            background-color: #4CAF50;
+            padding: 12px 8px;
+            text-align: center;
+            margin: auto;
+        }
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: powderblue;}
+        #customers tr:nth-child(odd){background-color: aquamarine;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body id="b">
@@ -17,28 +51,31 @@
 <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
 <hr>
 <div>
-    <strong>
-        <a th:href="@{/listRooms}" title="Select all category">All category</a><br>
-        <a th:href="@{/premiumCategory}" title="Select premium category">Premium category</a><br>
-        <a th:href="@{/averageCategory}" title="Select average category">Average category</a><br>
+    <fieldset>
+        <legend><h1>Rooms list:</h1></legend>
+    <strong style="font-size: large">
+        <a th:href="@{/listRooms}" title="Select all category">All category</a>&nbsp&nbsp
+        <a th:href="@{/premiumCategory}" title="Select premium category">Premium category</a>&nbsp&nbsp
+        <a th:href="@{/averageCategory}" title="Select average category">Average category</a>&nbsp&nbsp
         <a th:href="@{/budgetCategory}" title="Select budget category">Budget category</a>
     </strong>
-    <br>
-    <h1>Rooms list:</h1>
-    <table border="1" style="font-size:150%">
-        <tr>
-            <th>Number</th>
-            <th>Category</th>
-            <th>Price</th>
-        </tr>
-        <tr th:each ="room : ${rooms}">
-            <td th:utext="${room.number}">...</td>
-            <td th:utext="${room.category}">...</td>
-            <td th:utext="${room.price}">...</td>
-        </tr>
-    </table>
+    <hr>
+        <table id="customers" border="1" style="font-size:150%" th:align="center">
+            <tr>
+                <th>Number</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            <tr th:each ="room : ${rooms}">
+                <td th:utext="${room.number}">...</td>
+                <td th:utext="${room.category}">...</td>
+                <td th:utext="${room.price}">...</td>
+            </tr>
+        </table>
+    </fieldset>
 </div>
-<br>
-<a href="makeOrder">Make order</a>
+<div>
+<a href="makeOrder" id="z">Make order</a>
+</div>
 </body>
 </html>

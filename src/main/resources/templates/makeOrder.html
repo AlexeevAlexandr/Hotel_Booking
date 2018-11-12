@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>Make order</title>
     <style>
-        input {
-            width: 100%;
+        #b{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("room.jpg");
+        }
+        form{
+            text-align: center;
+            margin: 0 auto;
+            width:250px;
         }
     </style>
 </head>
@@ -13,27 +21,31 @@
 <a th:href="@{/listRooms}" title="Return to the rooms list page">Rooms List</a>&nbsp&nbsp
 <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
 <hr>
-<form th:action="@{/makeOrder}" th:object="${order}" method="POST">
-<fieldset>
+<form style="width: 50%" th:action="@{/makeOrder}" th:object="${order}" method="POST">
+<fieldset id="b">
     <legend><h1>Order</h1></legend>
-    <label>Name
-        <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter yor name" maxlength="50"><br>
+    <label>Name<br>
+        <input type="text" th:field="*{name}" placeholder="Enter your name" title="Enter your name" maxlength="50" style="width: 30%; text-align: center"><br>
     </label>
-    <label>The room number
-        <input type="number" th:field="*{number}" placeholder="Enter The room number" title="Enter The room number"><br>
+    <br>
+    <label>The room number<br>
+        <input type="number" th:field="*{number}" placeholder="Enter The room number" title="Enter The room number" style="width: 30%; text-align: center"><br>
     </label>
-    <label>Date
-        <input type="date" th:field="*{dateFrom}" placeholder="Enter date from" title="Enter date from">< >
-        <input type="date" th:field="*{dateTill}" placeholder="Enter date till" title="Enter date till"><br>
+    <br>
+    <label>Date<br>
+        <input type="date" th:field="*{dateFrom}" placeholder="Enter date from" title="Enter date from" style="width: 30%; text-align: center">< >
+        <input type="date" th:field="*{dateTill}" placeholder="Enter date till" title="Enter date till" style="width: 30%; text-align: center"><br>
     </label>
+    <br>
     <label>
-        <input type="checkbox" name="breakfast" value="breakfast">
+        <input type="checkbox" name="breakfast" value="breakfast" title="mark if you want to add breakfast to order">
     </label>Breakfast 5$<br>
     <label>
-        <input type="checkbox" name="cleaning" value="cleaning">
-    </label>cleaning 1$<br>
-    <button type="submit">Order</button>
-    <button type="reset">Clear</button>
+        <input type="checkbox" name="cleaning" value="cleaning" title="mark if you want to add cleaning to order">
+    </label>Cleaning 1$
+    <br><br>
+    <button type="submit" title="make order">Order</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" title="to clear form text">Clear</button>
 </fieldset>
 </form>
 <br>

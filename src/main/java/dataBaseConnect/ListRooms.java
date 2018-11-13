@@ -49,4 +49,11 @@ public class ListRooms {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    @Override
+    public String toString(){
+        return "Number = " + getNumber() +
+                "\nCategory = " + getCategory() +
+                "\nPrice = " + getPrice();
+    }
 }

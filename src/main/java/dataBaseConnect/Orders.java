@@ -121,4 +121,16 @@ public class Orders {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+    @Override
+    public String toString(){
+        return "Name = " + getName() +
+                "\nNumber = " + getNumber() +
+                "\nDate from = " + getDateFrom() +
+                "\nDate till = " + getDateTill() +
+                "\nCost = " + getCost() +
+                "\nClean = " + getClean() +
+                "\nBreakfast = " + getBreakfast() +
+                "\nRegistration date = " + getDateRegistration();
+    }
 }

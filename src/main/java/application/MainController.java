@@ -93,8 +93,8 @@ public class MainController {
             return "makeOrder";
         }
         int number = order.getNumber();
-        if (number < 1 || commands.checRoomNumber().stream().noneMatch(q -> q.equals(number))){
-            System.out.println(commands.checRoomNumber().stream().noneMatch(q -> q.equals(number)));
+        if (number < 1 || commands.checkRoomNumber().stream().noneMatch(q -> q.equals(number))){
+            System.out.println(commands.checkRoomNumber().stream().noneMatch(q -> q.equals(number)));
             model.addAttribute("errorMessage", incorrectNumber);
             return "makeOrder";
         }
@@ -132,7 +132,7 @@ public class MainController {
     public String listOrdersByName(Model model, HttpServletRequest request){
         try {
             String name = request.getParameter("name");
-            Model a = model.addAttribute("orders",commands.selecByName(name));
+            Model a = model.addAttribute("orders",commands.selectByName(name));
             if (a.toString().equals("{orders=[]}")){
                 model.addAttribute("errorMessage", nameNotFound);
             }

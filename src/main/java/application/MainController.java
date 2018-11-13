@@ -19,7 +19,7 @@ public class MainController {
     private Commands commands = new Commands();
     private String name;
 
-    @Value("Incorrect date format, example 2018-11-25")
+    @Value("Incorrect date format")
     private String errorMessageIncorrectDateFormat;
 
     @Value("Incorrect date insertion, the number of days can not be negative")
@@ -28,8 +28,14 @@ public class MainController {
     @Value("The name is to long, must be no more than 50 characters")
     private String errorMessageNameToLong;
 
-    @Value("Name not found")
+    @Value("Enter name")
+    private String errorMessageNameToShort;
+
+    @Value("The name not found")
     private String nameNotFound;
+
+    @Value("Rooms number not found")
+    private String incorrectNumber;
 
     @RequestMapping(value = {"/", "/startPage"})
     public String startPage(){
@@ -75,18 +81,26 @@ public class MainController {
 
     @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.POST)
     public String createOrder(Model model, @ModelAttribute("order") Order order, HttpServletRequest request) {
-        int number = order.getNumber();
-        String dateFrom = order.getDateFrom();
-        String dateTill =  order.getDateTill();
         name = order.getName();
         String clean = (request.getParameter("cleaning") == null) ? "no" : "yes";
         String breakfast = (request.getParameter("breakfast") == null) ? "no" : "yes";
-
         if (name.length()>50){
             model.addAttribute("errorMessage", errorMessageNameToLong);
             return "makeOrder";
         }
+        if (name.length()<1){
+            model.addAttribute("errorMessage", errorMessageNameToShort);
+            return "makeOrder";
+        }
+        int number = order.getNumber();
+        if (number < 1 || commands.checRoomNumber().stream().noneMatch(q -> q.equals(number))){
+            System.out.println(commands.checRoomNumber().stream().noneMatch(q -> q.equals(number)));
+            model.addAttribute("errorMessage", incorrectNumber);
+            return "makeOrder";
+        }
         try {
+            String dateFrom = order.getDateFrom();
+            String dateTill =  order.getDateTill();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = simpleDateFormat.parse(dateFrom);
             Date date2 = simpleDateFormat.parse(dateTill);

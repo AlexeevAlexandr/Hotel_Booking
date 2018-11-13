@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Commands {
@@ -98,4 +99,15 @@ public class Commands {
         }
         return null;
     }
+
+    public List checRoomNumber() {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            return session.createQuery("SELECT id FROM ListRooms").list();
+        } catch (HibernateException e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
 }

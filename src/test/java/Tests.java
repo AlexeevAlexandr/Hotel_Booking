@@ -2,6 +2,8 @@ import commands.Commands;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class Tests {
     private Commands command = new Commands();
@@ -74,7 +76,7 @@ public class Tests {
     }
 
     @Test
-    public void addOrder(){
+    public void addAndSelectOrder(){
         String expected = "[Name = Name\n" +
                 "Number = 1\n" +
                 "Date from = 2018-12-12\n" +
@@ -87,5 +89,26 @@ public class Tests {
         command.add(1,"2018-12-12", "2018-12-13", "Name", 100, "no", "no", "2018-12-10");
         List list = command.selectOrder("Name");
         assertEquals(expected,list.toString());
+    }
+
+    @Test
+    public void selectAllOrders() {
+        String expected = "[Name = Name\n" +
+                "Number = 1\n" +
+                "Date from = 2018-12-12\n" +
+                "Date till = 2018-12-13\n" +
+                "Cost = 100\n" +
+                "Clean = no\n" +
+                "Breakfast = no\n" +
+                "Registration date = 2018-12-10 00:00:00]";
+        List list = command.selectAllOrders();
+        assertEquals(expected, list.toString());
+    }
+
+    @Test
+    public void checkRoomNumber() {
+        List list = command.checkRoomNumber();
+        assertTrue(list.stream().anyMatch(q -> q.equals(1)));
+        assertFalse(list.stream().anyMatch(q -> q.equals(11)));
     }
 }

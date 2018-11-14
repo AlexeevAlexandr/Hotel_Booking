@@ -1,7 +1,6 @@
 package application;
 
 import commands.Commands;
-import commands.CountTotalCost;
 import dataBaseConnect.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -83,22 +82,32 @@ public class MainController {
     @RequestMapping(value = {"/makeOrder"}, method = RequestMethod.POST)
     public String createOrder(Model model, @ModelAttribute("order") Order order, HttpServletRequest request) {
         name = order.getName();
+
+        //checking if set additional options
         String clean = (request.getParameter("cleaning") == null) ? "no" : "yes";
         String breakfast = (request.getParameter("breakfast") == null) ? "no" : "yes";
+
+        //checking if name more than 50 characters
         if (name.length()>50){
             model.addAttribute("errorMessage", errorMessageNameToLong);
             return "makeOrder";
         }
+
+        //checking if set name
         if (name.length()<1){
             model.addAttribute("errorMessage", errorMessageNameToShort);
             return "makeOrder";
         }
+
+        //checking if contains number in rooms list
         int number = order.getNumber();
         if (number < 1 || commands.checkRoomNumber().stream().noneMatch(q -> q.equals(number))){
             System.out.println(commands.checkRoomNumber().stream().noneMatch(q -> q.equals(number)));
             model.addAttribute("errorMessage", incorrectNumber);
             return "makeOrder";
         }
+
+        //counting the days number
         try {
             String dateFrom = order.getDateFrom();
             String dateTill =  order.getDateTill();
@@ -106,14 +115,19 @@ public class MainController {
             Date date1 = simpleDateFormat.parse(dateFrom);
             Date date2 = simpleDateFormat.parse(dateTill);
             int diff = (int) TimeUnit.DAYS.convert((date2.getTime() - date1.getTime()),TimeUnit.MILLISECONDS);
+
+            //checking if the days number is negative
             if (diff < 0){
                 model.addAttribute("errorMessage", errorMessageNegativeDate);
                 return "makeOrder";
             }
-            int cost = ((new CountTotalCost().selectPrice(number)) +
+
+            //counting order sum
+            int cost = ((commands.selectPrice(number)) +
                 ((clean.equalsIgnoreCase("yes") ? 1 : 0)) +
                 ((breakfast.equalsIgnoreCase("yes") ? 5 : 0))) * diff;
 
+            //adding data to database
             commands.add(number, dateFrom, dateTill, name, cost, clean, breakfast, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             return "redirect:/order";
         }catch(Exception e){

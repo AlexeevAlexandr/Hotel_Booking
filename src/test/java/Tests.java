@@ -1,6 +1,4 @@
 import commands.Commands;
-import commands.CountTotalCost;
-import org.hibernate.HibernateException;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -133,12 +131,12 @@ public class Tests {
 
     @Test
     public void selectPrice(){
-        assertEquals(100, new CountTotalCost().selectPrice(1));
+        assertEquals(100, command.selectPrice(1));
     }
 
     @Test (expected = NumberFormatException.class)
     public void exception(){
-        new CountTotalCost().selectPrice(-5);
+        command.selectPrice(-5);
     }
 
 }

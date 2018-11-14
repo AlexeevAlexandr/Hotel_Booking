@@ -138,4 +138,14 @@ public class Commands {
             e.getMessage();
         }
     }
+
+    public int selectPrice(int number) {
+        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            return Integer.parseInt(session.createSQLQuery("SELECT price FROM listRooms WHERE number = " + number).list().toString().replaceAll("[\\[\\]]", ""));
+        } catch (HibernateException e) {
+            e.getMessage();
+        }
+        return 0;
+    }
 }

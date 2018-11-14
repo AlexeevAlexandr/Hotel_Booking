@@ -13,7 +13,6 @@
         form{
             text-align: center;
             margin: 0 auto;
-            width:250px;
         }
     </style>
 </head>
@@ -24,7 +23,7 @@
         <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
     </nav>
 <hr>
-<form style="width: 50%" th:action="@{/makeOrder}" th:object="${order}" method="POST">
+<form  th:action="@{/makeOrder}" th:object="${order}" method="POST">
 <fieldset id="b">
     <legend><h1>Order</h1></legend>
     <label>Name<br>

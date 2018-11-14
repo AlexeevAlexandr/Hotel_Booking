@@ -10,7 +10,7 @@
         <property name="hibernate.connection.username">gezuscmpecaoap</property>
         <property name="hibernate.connection.password">128f57c6fbe610a292f6bd4fbb6d67986a3573030e045c08352ec9288801a002</property>
 
-        <mapping resource="DataBaseConnect.hbm.xml"/>
+        <mapping resource="ListRooms.hbm.xml"/>
         <mapping resource="Orders.hbm.xml"/>
 
     </session-factory>

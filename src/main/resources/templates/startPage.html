@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>    <title>Start Page</title>
-    <style>
-        #b{
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("room.jpg");
-        }
-    </style>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Start Page</title>
+    <link rel="stylesheet" th:href="startPage.css">
 </head>
 <body id="b">
 <a th:href="@{/listRooms}" title="to list of rooms page">List Rooms</a>&nbsp&nbsp

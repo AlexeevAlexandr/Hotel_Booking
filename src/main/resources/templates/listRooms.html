@@ -3,48 +3,7 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Rooms List</title>
-    <style>
-        #b{
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("room.jpg");
-        }
-        div {
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-        }
-        #z{
-            border: 1px solid #ddd;
-            background-color: #4CAF50;
-            padding: 12px 8px;
-            text-align: center;
-            margin: auto;
-        }
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: powderblue;}
-        #customers tr:nth-child(odd){background-color: aquamarine;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" th:href="listRooms.css">
 </head>
 <body id="b">
 <a th:href="@{/startPage}" title="Return to the start page">Start Page</a>&nbsp&nbsp

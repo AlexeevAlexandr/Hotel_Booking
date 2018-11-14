@@ -1,36 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>    <title>Order</title>
-    <style>
-        #b{
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-image: url("room.jpg");
-        }
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: powderblue;}
-        #customers tr:nth-child(odd){background-color: aquamarine;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #4CAF50;
-            color: white;
-        }
-    </style>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Order</title>
+    <link rel="stylesheet" th:href="order.css">
 </head>
 <body id="b">
 <div>

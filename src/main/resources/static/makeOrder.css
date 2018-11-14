@@ -1,0 +1,17 @@
+#b{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("room.jpg");
+}
+form{
+    text-align: center;
+    margin: 0 auto;
+}
+#z{
+    border: 1px solid #ddd;
+    background-color: #4CAF50;
+    padding: 12px 8px;
+    text-align: center;
+    margin: auto;
+}

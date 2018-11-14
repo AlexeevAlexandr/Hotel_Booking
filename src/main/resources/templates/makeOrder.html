@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Make order</title>
     <style>
         #b{
@@ -18,9 +18,11 @@
     </style>
 </head>
 <body>
-<a th:href="@{/startPage}" title="Return to the start page">Start Page</a>&nbsp&nbsp
-<a th:href="@{/listRooms}" title="Return to the rooms list page">Rooms List</a>&nbsp&nbsp
-<a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
+    <nav>
+        <a th:href="@{/startPage}" title="Return to the start page">Start Page</a>&nbsp&nbsp
+        <a th:href="@{/listRooms}" title="Return to the rooms list page">Rooms List</a>&nbsp&nbsp
+        <a th:href="@{/listOrdersByName}" title="View order by name">List orders by name</a>
+    </nav>
 <hr>
 <form style="width: 50%" th:action="@{/makeOrder}" th:object="${order}" method="POST">
 <fieldset id="b">

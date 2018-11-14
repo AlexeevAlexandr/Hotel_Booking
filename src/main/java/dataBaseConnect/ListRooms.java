@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 @Table(name = "listRooms")
 public class ListRooms {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "number")
     private int number;
 

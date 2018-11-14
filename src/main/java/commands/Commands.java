@@ -68,8 +68,7 @@ public class Commands {
              Session session = sessionFactory.openSession())
         {
             transaction = session.beginTransaction();
-            Orders orders = new Orders(number, dateFrom, dateTill, name, cost, clean, breakfast, date);
-            session.save(orders);
+            session.save(new Orders(number, dateFrom, dateTill, name, cost, clean, breakfast, date));
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -109,27 +108,13 @@ public class Commands {
         return null;
     }
 
-    public void clearListRooms() {
+    public void clearTable(String table) {
         try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
              Session session = sessionFactory.openSession())
         {
             transaction = session.beginTransaction();
-            session.createSQLQuery("TRUNCATE TABLE listRooms").executeUpdate();
-            transaction.commit();
-        } catch (HibernateException e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.getMessage();
-        }
-    }
-
-    public void clearOrders() {
-        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-             Session session = sessionFactory.openSession())
-        {
-            transaction = session.beginTransaction();
-            session.createSQLQuery("TRUNCATE TABLE orders").executeUpdate();
+            session.createSQLQuery("TRUNCATE TABLE "+ table).executeUpdate();
+            session.createSQLQuery("ALTER SEQUENCE hibernate_sequence restart").executeUpdate();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {

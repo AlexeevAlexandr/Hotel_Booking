@@ -1,23 +1,27 @@
 import commands.Commands;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
     private Commands command = new Commands();
 
     @Test
-    public void clear(){
-        command.clearListRooms();
+    public void Aclear(){
+        command.clearTable("listrooms");
         List list = command.selectAllCategory();
         assertEquals("[]", list.toString());
     }
 
     @Test
-    public void selectAllCategory(){
-        command.clearListRooms();
+    public void BselectAllCategory(){
+        command.clearTable("listrooms");
         String [] category = {"budget","average", "premium"};
         int [] price = {100, 250, 500};
         for (int i = 0; i < 2; i++) {
@@ -43,7 +47,7 @@ public class Tests {
     }
 
     @Test
-    public void selectPremiumCategory(){
+    public void CselectPremiumCategory(){
         String expected = "[Number = 3\n" +
                 "Category = premium\n" +
                 "Price = 500, Number = 6\n" +
@@ -54,7 +58,7 @@ public class Tests {
     }
 
     @Test
-    public void selectAverageCategory(){
+    public void DselectAverageCategory(){
         String expected = "[Number = 2\n" +
                 "Category = average\n" +
                 "Price = 250, Number = 5\n" +
@@ -65,7 +69,7 @@ public class Tests {
     }
 
     @Test
-    public void selectBudgetCategory(){
+    public void EselectBudgetCategory(){
         String expected = "[Number = 1\n" +
                 "Category = budget\n" +
                 "Price = 100, Number = 4\n" +
@@ -76,7 +80,8 @@ public class Tests {
     }
 
     @Test
-    public void addAndSelectOrder(){
+    public void FaddAndSelectOrder(){
+        command.clearTable("orders");
         String expected = "[Name = Name\n" +
                 "Number = 1\n" +
                 "Date from = 2018-12-12\n" +
@@ -84,15 +89,14 @@ public class Tests {
                 "Cost = 100\n" +
                 "Clean = no\n" +
                 "Breakfast = no\n" +
-                "Registration date = 2018-12-10 00:00:00]";
-        command.clearOrders();
+                "Registration date = 2018-12-10]";
         command.add(1,"2018-12-12", "2018-12-13", "Name", 100, "no", "no", "2018-12-10");
         List list = command.selectOrder("Name");
         assertEquals(expected,list.toString());
     }
 
     @Test
-    public void selectAllOrders() {
+    public void HselectAllOrders() {
         String expected = "[Name = Name\n" +
                 "Number = 1\n" +
                 "Date from = 2018-12-12\n" +
@@ -100,13 +104,13 @@ public class Tests {
                 "Cost = 100\n" +
                 "Clean = no\n" +
                 "Breakfast = no\n" +
-                "Registration date = 2018-12-10 00:00:00]";
+                "Registration date = 2018-12-10]";
         List list = command.selectAllOrders();
         assertEquals(expected, list.toString());
     }
 
     @Test
-    public void checkRoomNumber() {
+    public void JheckRoomNumber() {
         List list = command.checkRoomNumber();
         assertTrue(list.stream().anyMatch(q -> q.equals(1)));
         assertFalse(list.stream().anyMatch(q -> q.equals(11)));

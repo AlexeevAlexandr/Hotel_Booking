@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dfic79t2nibr9t@ec2-54-75-242-47.eu-west-1.compute.amazonaws.com" uuid="e70e81de-6200-487e-a375-05f49711f030">
+    <data-source source="LOCAL" name="jdbc:postgresql://ec2-54-75-242-47.eu-west-1.compute.amazonaws.com :5432//gezuscmpecaoap:128f57c6fbe610a292f6bd4fbb6d67986a3573030e045c08352ec9288801a002@ec2-54-75-242-47.eu-west-1.compute.amazonaws.com:5432/dfic79t2nibr9t?sslmode=require" uuid="a791c415-8dd6-49e3-8920-e502f8c6ce87">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-75-242-47.eu-west-1.compute.amazonaws.com:5432/dfic79t2nibr9t?sslmode=require</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-75-242-47.eu-west-1.compute.amazonaws.com :5432//gezuscmpecaoap:128f57c6fbe610a292f6bd4fbb6d67986a3573030e045c08352ec9288801a002@ec2-54-75-242-47.eu-west-1.compute.amazonaws.com:5432/dfic79t2nibr9t?sslmode=require</jdbc-url>
+      <driver-properties>
+        <property name="sslmode" value="require" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

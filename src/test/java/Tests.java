@@ -1,12 +1,13 @@
 import commands.Commands;
+import commands.CountTotalCost;
+import org.hibernate.HibernateException;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.List;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
@@ -96,7 +97,7 @@ public class Tests {
     }
 
     @Test
-    public void HselectAllOrders() {
+    public void GselectAllOrders() {
         String expected = "[Name = Name\n" +
                 "Number = 1\n" +
                 "Date from = 2018-12-12\n" +
@@ -110,9 +111,34 @@ public class Tests {
     }
 
     @Test
+    public void HselectByName(){
+        String expected = "[Name = Name\n" +
+                "Number = 1\n" +
+                "Date from = 2018-12-12\n" +
+                "Date till = 2018-12-13\n" +
+                "Cost = 100\n" +
+                "Clean = no\n" +
+                "Breakfast = no\n" +
+                "Registration date = 2018-12-10]";
+        List list = command.selectByName("Name");
+        assertEquals(expected, list.toString());
+    }
+
+    @Test
     public void JheckRoomNumber() {
         List list = command.checkRoomNumber();
         assertTrue(list.stream().anyMatch(q -> q.equals(1)));
         assertFalse(list.stream().anyMatch(q -> q.equals(11)));
     }
+
+    @Test
+    public void selectPrice(){
+        assertEquals(100, new CountTotalCost().selectPrice(1));
+    }
+
+    @Test (expected = NumberFormatException.class)
+    public void exception(){
+        new CountTotalCost().selectPrice(-5);
+    }
+
 }

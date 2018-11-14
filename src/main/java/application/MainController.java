@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class MainController {
@@ -104,7 +106,7 @@ public class MainController {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = simpleDateFormat.parse(dateFrom);
             Date date2 = simpleDateFormat.parse(dateTill);
-            int diff = Math.round(date2.getDate() - date1.getDate());
+            int diff = (int) TimeUnit.DAYS.convert((date2.getTime() - date1.getTime()),TimeUnit.MILLISECONDS);
             if (diff < 0){
                 model.addAttribute("errorMessage", errorMessageNegativeDate);
                 return "makeOrder";
